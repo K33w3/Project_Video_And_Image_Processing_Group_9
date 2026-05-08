@@ -51,6 +51,48 @@ Available options:
 | `--img-size` | 96 | Input resolution |
 | `--lr` | 5e-4 | Peak learning rate |
 
+
+## Additional Experimental Methods
+
+Besides the final EfficientNet-B0 solution, additional methods were tried during development.
+
+### KNN + HOG
+
+A traditional computer vision pipeline that uses:
+- image recentering
+- HOG (Histogram of Oriented Gradients) feature extraction
+- K-Nearest Neighbors classification
+
+Method Pipeline:
+1. Load grayscale digit images.
+2. Recenter digits using center-of-mass alignment.
+3. Extract HOG descriptors.
+4. Train KNN classifier (`k=3`). 
+
+This approach resulted in approximately `99.56%` validation accuracy.
+
+### LeNet-5 CNN
+
+LeNet-5-style convolutional neural network implemented in PyTorch.
+
+Architecture:
+- Conv(1->6, 5x5)
+- MaxPool
+- Conv(6->16, 5x5)
+- MaxPool
+- Fully connected layers:
+  - 400 -> 120
+  - 120 -> 84
+  - 84 -> 10
+
+Training:
+- Adam optimizer
+- Cross-entropy loss
+- 35 epochs
+- 80/20 train/validation 
+
+This approach resulted in approximately `99.85%` validation accuracy.
+
 ## Results
 
 | Seed | Best validation accuracy |
