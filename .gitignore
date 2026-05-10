@@ -1,0 +1,10 @@
+.python-version
+requirements.txt
+pyproject.toml
+environment.yml
+*.pyc
+__pycache__/
+.venv/
+iivp-2026-challenge.zip
+iivp-2026-challenge/
+.DS_Store
